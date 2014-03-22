@@ -1,3 +1,32 @@
+/**
+ * @GameName :
+ * flappy bird
+ *
+ * @DevelopTool:
+ * Cocos2d-x Editor (CocosEditor)
+ *
+ * @time
+ * 2014-02-11 am
+ *
+ * @Licensed:
+ * This showcase is licensed under GPL.
+ *
+ * @Authors:
+ * Programmer: touchSnow
+ *
+ * @Links:
+ * http://www.cocos2d-x.com/ (cocos官方)
+ * https://github.com/makeapp      （github）
+ * http://blog.csdn.net/touchsnow (csdn博客)
+ * http://blog.makeapp.co/ （官方博客）
+ * http://www.cocoseditor.com/ （建设中官网）
+ *
+ * @Contact
+ * 邮箱：zuowen@makeapp.co
+ * qq群：232361142
+ *
+ */
+
 FP_MAIN_TEXTURE = {
     FRAME_ANIMS: "beanstalk/Resources/bs_main_anims.plist",
     HOSE: ["holdback1.png", "holdback2.png"]
