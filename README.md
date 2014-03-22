@@ -2,7 +2,7 @@ cocoseditor-flappybird
 ======================
 
 
-<strong>开发工具(2013-02-14 已更新到1.0Beta)：</strong>
+<strong>开发工具：</strong>
 
 cocos2dx editor，它是开发跨平台的手机游戏工具，运行window系统上，javascript脚本语言，基于cocos2d-x跨平台游戏引擎, 集合代码编辑，场景设计，动画制作，字体设计，还有粒子，物理系统，地图等等的，而且调试方便，和实时模拟；
 
