@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>animations</key>
+	<dict>
+		<key>fly</key>
+		<dict>
+			<key>delay</key>
+			<string>0.05</string>
+			<key>frames</key>
+			<array>
+				<string>bird1.png</string>
+				<string>bird2.png</string>
+				<string>bird3.png</string>
+			</array>
+		</dict>
+	</dict>
+	<key>textureFileName</key>
+	<string>flappy_packer.plist</string>
+</dict>
+</plist>
