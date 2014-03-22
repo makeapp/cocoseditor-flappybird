@@ -8,7 +8,7 @@ cocos2dx editor，它是开发跨平台的手机游戏工具，运行window系�
 
 cocos2dx editor 下载，介绍和教程：<a href="http://blog.csdn.net/touchsnow/article/details/19070665" target="_blank">http://blog.csdn.net/touchsnow/article/details/19070665</a>；
 
-cocos2dx-editor官方博客：<a href="http://blog.makeapp.co/?cat=8" target="_blank">http://blog.makeapp.co/?cat=8</a>；
+cocos2dx-editor官方博客：<a href="http://blog.makeapp.co" target="_blank">http://blog.makeapp.co/?cat=8</a>；
 
 &nbsp;
 
