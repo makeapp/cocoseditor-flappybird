@@ -28,7 +28,6 @@
  */
 
 FP_MAIN_TEXTURE = {
-    FRAME_ANIMS: "beanstalk/Resources/bs_main_anims.plist",
     HOSE: ["holdback1.png", "holdback2.png"]
 }
 
@@ -36,7 +35,8 @@ READY = 1;
 START = 2;
 OVER = 3;
 
-var MainLayer = function () {
+var MainLayer = function ()
+{
     cc.log("MainLayer");
     this.bird = this.bird || {};
     this.ground = this.ground || {};
@@ -51,41 +51,49 @@ var MainLayer = function () {
     this.gameMode = READY;
 };
 
-MainLayer.prototype.onDidLoadFromCCB = function () {
+MainLayer.prototype.onDidLoadFromCCB = function ()
+{
     if (sys.platform == 'browser') {
         this.onEnter();
     }
     else {
-        this.rootNode.onEnter = function () {
+        this.rootNode.onEnter = function ()
+        {
             this.controller.onEnter();
         };
     }
 
-    this.rootNode.schedule(function (dt) {
+    this.rootNode.schedule(function (dt)
+    {
         this.controller.onUpdate(dt);
     });
 
-    this.rootNode.onExit = function () {
+    this.rootNode.onExit = function ()
+    {
         this.controller.onExit();
     };
 
-    this.rootNode.onTouchesBegan = function (touches, event) {
+    this.rootNode.onTouchesBegan = function (touches, event)
+    {
         this.controller.onTouchesBegan(touches, event);
         return true;
     };
 
-    this.rootNode.onTouchesMoved = function (touches, event) {
+    this.rootNode.onTouchesMoved = function (touches, event)
+    {
         this.controller.onTouchesMoved(touches, event);
         return true;
     };
-    this.rootNode.onTouchesEnded = function (touches, event) {
+    this.rootNode.onTouchesEnded = function (touches, event)
+    {
         this.controller.onTouchesEnded(touches, event);
         return true;
     };
     this.rootNode.setTouchEnabled(true);
 };
 
-MainLayer.prototype.onEnter = function () {
+MainLayer.prototype.onEnter = function ()
+{
     cc.AnimationCache.getInstance().addAnimations("Resources/flappy_frame.plist");
     this.groundRun();
     this.ground.setZOrder(10);
@@ -98,10 +106,11 @@ MainLayer.prototype.onEnter = function () {
         this.newHose(i);
     }
 
-    this.languageLabel.setZOrder(150);
+    // this.languageLabel.setZOrder(150);
 }
 
-MainLayer.prototype.newHose = function (num) {
+MainLayer.prototype.newHose = function (num)
+{
     var hoseHeight = 830;
     var acrossHeight = 300;
     var downHeight = 100 + getRandom(400);
@@ -129,25 +138,28 @@ MainLayer.prototype.newHose = function (num) {
     return null;
 }
 
-MainLayer.prototype.groundRun = function () {
+MainLayer.prototype.groundRun = function ()
+{
     var action1 = cc.MoveTo.create(0.5, cc.p(-120, 0));
     var action2 = cc.MoveTo.create(0, cc.p(0, 0));
     var action = cc.Sequence.create(action1, action2);
     this.ground.runAction(cc.RepeatForever.create(action));
 }
 
-MainLayer.prototype.birdReadyAction = function () {
+MainLayer.prototype.birdReadyAction = function ()
+{
     var birdX = this.bird.getPositionX();
     var birdY = this.bird.getPositionY();
     var time = birdY / 2000;
     var actionFrame = cc.Animate.create(cc.AnimationCache.getInstance().getAnimation("fly"));
     var flyAction = cc.Repeat.create(actionFrame, 90000);
     this.bird.runAction(cc.Sequence.create(
-        flyAction)
+            flyAction)
     );
 }
 
-MainLayer.prototype.birdFallAction = function () {
+MainLayer.prototype.birdFallAction = function ()
+{
     this.gameMode = OVER;
     this.bird.stopAllActions();
     this.ground.stopAllActions();
@@ -155,13 +167,14 @@ MainLayer.prototype.birdFallAction = function () {
     var birdY = this.bird.getPositionY();
     var time = birdY / 2000;
     this.bird.runAction(cc.Sequence.create(
-        cc.DelayTime.create(0.1),
-        cc.Spawn.create(cc.RotateTo.create(time, 90), cc.MoveTo.create(time, cc.p(birdX, 50))))
+            cc.DelayTime.create(0.1),
+            cc.Spawn.create(cc.RotateTo.create(time, 90), cc.MoveTo.create(time, cc.p(birdX, 50))))
     );
     this.overNode.setVisible(true);
 }
 
-MainLayer.prototype.birdRiseAction = function () {
+MainLayer.prototype.birdRiseAction = function ()
+{
     var riseHeight = 60;
     var birdX = this.bird.getPositionX();
     var birdY = this.bird.getPositionY();
@@ -178,12 +191,13 @@ MainLayer.prototype.birdRiseAction = function () {
 
     this.bird.stopAllActions();
     this.bird.runAction(cc.Spawn.create(
-        cc.Sequence.create(riseAction, cc.DelayTime.create(0.1), fallAction),
-        flyAction)
+            cc.Sequence.create(riseAction, cc.DelayTime.create(0.1), fallAction),
+            flyAction)
     );
 }
 
-MainLayer.prototype.onUpdate = function (dt) {
+MainLayer.prototype.onUpdate = function (dt)
+{
     if (this.gameMode != START) {
         return;
     }
@@ -194,19 +208,25 @@ MainLayer.prototype.onUpdate = function (dt) {
     this.checkCollision();
 }
 
-MainLayer.prototype.checkCollision = function () {
+MainLayer.prototype.checkCollision = function ()
+{
     if (this.bird.getPositionY() < 60) {
         cc.log("floor");
         this.birdFallAction();
         return;
     }
+
+
     for (var i = 0; i < this.hoseSpriteList.length; i++) {
         var hose = this.hoseSpriteList[i];
         if (!this.isInScreen(hose)) {
             // continue;
         }
 
-        if (cc.rectIntersectsRect(hose.getBoundingBox(), this.bird.getBoundingBox())) {
+        var birdRect = this.bird.getBoundingBox();
+       // var birdRect = cc.rectCreate(cc.p(rect.x + rect.width / 2 + rect.y + rect.height / 2), 25);
+       // cc.log("bird position==" + this.bird.getPosition());
+        if (cc.rectIntersectsRect(hose.getBoundingBox(), birdRect)) {
             cc.log("hose positionX==" + hose.getBoundingBox().x);
             cc.log("this.bird positionX==" + this.bird.getBoundingBox().x);
             cc.log("i==" + i);
@@ -217,30 +237,33 @@ MainLayer.prototype.checkCollision = function () {
     }
 }
 
-MainLayer.prototype.isInScreen = function (sprite) {
+MainLayer.prototype.isInScreen = function (sprite)
+{
     return (sprite.getPositionX() > 0 && sprite.getPositionX() < 720);
 }
 
-MainLayer.prototype.onExitClicked = function () {
-}
-
-MainLayer.prototype.onStartClicked = function () {
+MainLayer.prototype.onStartClicked = function ()
+{
     cc.Director.getInstance().resume();
     cc.BuilderReader.runScene("", "MainLayer");
 }
 
-MainLayer.prototype.onExit = function () {
+MainLayer.prototype.onExit = function ()
+{
     cc.log("onExit");
 }
 
-MainLayer.prototype.onTouchesBegan = function (touches, event) {
+MainLayer.prototype.onTouchesBegan = function (touches, event)
+{
     var loc = touches[0].getLocation();
 }
 
-MainLayer.prototype.onTouchesMoved = function (touches, event) {
+MainLayer.prototype.onTouchesMoved = function (touches, event)
+{
 }
 
-MainLayer.prototype.onTouchesEnded = function (touches, event) {
+MainLayer.prototype.onTouchesEnded = function (touches, event)
+{
     if (this.gameMode == OVER) {
         return;
     }
@@ -255,16 +278,8 @@ MainLayer.prototype.onTouchesEnded = function (touches, event) {
 
 }
 
-function isInRect(ccRect, ccTouchBeganPos) {
-    if (ccTouchBeganPos.x > ccRect.x && ccTouchBeganPos.x < (ccRect.x + ccRect.width)) {
-        if (ccTouchBeganPos.y > ccRect.y && ccTouchBeganPos.y < (ccRect.y + ccRect.height)) {
-            return true;
-        }
-    }
-    return false;
-}
-
-function getRandom(maxSize) {
-    return Math.floor(Math.random() * maxSize) % maxSize;
+cc.rectCreate = function (p, area)
+{
+    return  cc.rect(p.x - area[0], p.y - area[1], area[0] * 2, area[1] * 2);
 }
 

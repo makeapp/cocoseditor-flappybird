@@ -97,6 +97,27 @@ cc.BuilderReader.runScene = function (module, name)
     }
 }
 
+cc.rectCreate = function (p, area)
+{
+    return  cc.rect(p.x - area[0], p.y - area[1], area[0] * 2, area[1] * 2);
+}
+
+
+function isInRect(ccRect, ccTouchBeganPos)
+{
+    if (ccTouchBeganPos.x > ccRect.x && ccTouchBeganPos.x < (ccRect.x + ccRect.width)) {
+        if (ccTouchBeganPos.y > ccRect.y && ccTouchBeganPos.y < (ccRect.y + ccRect.height)) {
+            return true;
+        }
+    }
+    return false;
+}
+
+function getRandom(maxSize)
+{
+    return Math.floor(Math.random() * maxSize) % maxSize;
+}
+
 var ccb_resources = [
     {src: "Resources/flappy_packer.plist"},
     {src: "Resources/flappy_frame.plist"} ,
