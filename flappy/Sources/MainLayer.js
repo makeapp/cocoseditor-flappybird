@@ -27,9 +27,10 @@
  *
  */
 
+
 FP_MAIN_TEXTURE = {
     HOSE: ["holdback1.png", "holdback2.png"]
-}
+};
 
 READY = 1;
 START = 2;
@@ -107,7 +108,7 @@ MainLayer.prototype.onEnter = function ()
     }
 
     // this.languageLabel.setZOrder(150);
-}
+};
 
 MainLayer.prototype.newHose = function (num)
 {
@@ -136,7 +137,7 @@ MainLayer.prototype.newHose = function (num)
     this.hoseSpriteList.push(ccSpriteDown);
     this.hoseSpriteList.push(ccSpriteUp);
     return null;
-}
+};
 
 MainLayer.prototype.groundRun = function ()
 {
