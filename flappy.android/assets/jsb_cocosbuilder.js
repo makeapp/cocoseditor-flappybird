@@ -46,7 +46,7 @@ cc.BuilderReader.load = function(file, owner, parentSize)
             }
             else
             {
-                if(callbackNode instanceof cc.ControlButton||callbackNode.addTargetWithActionForControlEvents)
+                if(callbackNode instanceof cc.ControlButton)
                 {
                     var ownerCallbackControlEvents = reader.getOwnerCallbackControlEvents();
                     callbackNode.addTargetWithActionForControlEvents(owner, owner[callbackName], ownerCallbackControlEvents[i]);
@@ -107,16 +107,14 @@ cc.BuilderReader.load = function(file, owner, parentSize)
             }
             else
             {
-                if(callbackNode instanceof cc.ControlButton||callbackNode.addTargetWithActionForControlEvents)
+                if(callbackNode instanceof cc.ControlButton)
                 {
                     var documentCallbackControlEvents = animationManager.getDocumentCallbackControlEvents();
                     callbackNode.addTargetWithActionForControlEvents(controller, controller[callbackName], documentCallbackControlEvents[j]); 
                 }
                 else
                 {
-                    if(callbackNode.setCallback){
-                        callbackNode.setCallback(controller[callbackName], controller);
-                    }
+                    callbackNode.setCallback(controller[callbackName], controller);
                 }
             }
         }

@@ -1,32 +1,3 @@
-/**
- * @GameName :
- * flappy bird
- *
- * @DevelopTool:
- * Cocos2d-x Editor (CocosEditor)
- *
- * @time
- * 2014-02-11 am
- *
- * @Licensed:
- * This showcase is licensed under GPL.
- *
- * @Authors:
- * Programmer: touchSnow
- *
- * @Links:
- * http://www.cocos2d-x.com/ (cocos官方)
- * https://github.com/makeapp      （github）
- * http://blog.csdn.net/touchsnow (csdn博客)
- * http://blog.makeapp.co/ （官方博客）
- * http://www.cocoseditor.com/ （建设中官网）
- *
- * @Contact
- * 邮箱：zuowen@makeapp.co
- * qq群：232361142
- *
- */
-
 FP_MAIN_TEXTURE = {
     FRAME_ANIMS: "beanstalk/Resources/bs_main_anims.plist",
     HOSE: ["holdback1.png", "holdback2.png"]
@@ -43,6 +14,7 @@ var MainLayer = function () {
     this.hoseNode = this.hoseNode || {};
     this.readyNode = this.readyNode || {};
     this.overNode = this.overNode || {};
+    this.languageLabel = this.languageLabel || {};
 
     this.passTime = 0;
     this.hoseSpriteList = [];
@@ -98,7 +70,28 @@ MainLayer.prototype.onEnter = function () {
         this.newHose(i);
     }
 
+    var adsAdmob = plugin.PluginManager.getInstance().loadPlugin("AdsAdmob");
+    cc.log("configDeveloperInfo AdsAdmob");
+    if (adsAdmob) {
+        cc.log("configDeveloperInfo");
+        adsAdmob.configDeveloperInfo({"AdmobID": "a152fcf037adb43"});
+        adsAdmob.showAds(0, 0, 1);
+    }
+    else {
+        cc.log("can't find AdsAdmob plugin");
+    }
+
+
+    // cc.log("from android cocos2dx language ==" + sys.localStorage.getItem("language"));
+    var lan = sys.localStorage.getItem("language");
+    /* if (lan == "CN") {
+     this.languageLabel.setString("系统语言：" + lan);
+     } else {
+     this.languageLabel.setString("系统语言：" + lan);
+     }*/
+    this.languageLabel.setString("系统语言：" + lan);
     this.languageLabel.setZOrder(150);
+    this.languageLabel.setVisible(false);
 }
 
 MainLayer.prototype.newHose = function (num) {
@@ -227,6 +220,10 @@ MainLayer.prototype.onExitClicked = function () {
 MainLayer.prototype.onStartClicked = function () {
     cc.Director.getInstance().resume();
     cc.BuilderReader.runScene("", "MainLayer");
+}
+
+MainLayer.prototype.onGradeClicked = function () {
+    sys.localStorage.setItem("share", "xxx");
 }
 
 MainLayer.prototype.onExit = function () {

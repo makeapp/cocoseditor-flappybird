@@ -7,8 +7,8 @@
     <uses-sdk android:minSdkVersion="8"/>
 
     <application android:label="@string/app_name"
-                 android:debuggable="false"
-                 android:icon="@drawable/icon">
+
+                 android:icon="@drawable/icon">   <!--android:debuggable="false"-->
 
         <activity android:name="org.cocos2dx.android.AndroidMainActivity"
                   android:label="@string/app_name"
@@ -20,6 +20,7 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
+
         <activity android:name="org.cocos2dx.lib.Cocos2dMainActivity"
                   android:screenOrientation="portrait"
                   android:theme="@android:style/Theme.NoTitleBar.Fullscreen"/>

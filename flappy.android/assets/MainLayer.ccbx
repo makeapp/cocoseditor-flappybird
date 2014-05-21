@@ -76,7 +76,7 @@
         </Menu>
       </Node>
         <LabelTTF positionType="LeftBottom" positionX="360" positionY="120" anchorPointX="0.5"
-                  anchorPointY="0.5" var="languageLabel" target="Doc" text="系统语言：" fontSize="15" color="#ffff362e" visible="false"/>
+                  anchorPointY="0.5" var="languageLabel" target="Doc" text="系统语言：" fontSize="15" color="#ffff362e"/>
     </Layer>
 
 
